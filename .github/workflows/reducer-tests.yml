@@ -1,0 +1,54 @@
+name: Reducer Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "contracts/**"
+      - "fixtures/**"
+      - "tools/run_reducer_cases.py"
+      - ".github/workflows/reducer-tests.yml"
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reducer-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run reducer fixture tests
+        run: python tools/run_reducer_cases.py
+
+      - name: Show generated receipt
+        if: always()
+        run: |
+          if [ -f evidence/REDUCER_EXECUTION_LATEST.json ]; then
+            cat evidence/REDUCER_EXECUTION_LATEST.json
+          else
+            echo "Receipt was not generated."
+            exit 1
+          fi
+
+      - name: Upload execution receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reducer-execution-receipt
+          path: evidence/REDUCER_EXECUTION_LATEST.json
+          if-no-files-found: error
