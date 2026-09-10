@@ -50,9 +50,9 @@
 {
 "rank": 5,
 "condition": "AUTHORITY_CEILING",
-"terminal_effect": {
-"verification_status": "VERIFIED",
-"decision_authority_state": "NO_PRODUCTION_ACTION"
+"effect": {
+"verification_status": "PRESERVE_CURRENT",
+"maximum_decision_authority_state": "NO_PRODUCTION_ACTION"
 }
 }
 ],
@@ -61,6 +61,8 @@
 "Mandatory known violation overrides epistemic unknown and operational hold",
 "Epistemic unknown overrides operational hold",
 "Operational hold overrides the authority ceiling",
+"Authority ceiling must not promote verification status",
+"Authority ceiling constrains permission to act, not verification integrity",
 "No weighted average may mask a mandatory hard failure",
 "Additional adverse information must not increase permitted authority",
 "CannotEvaluate != EvaluatedAndFailed"
