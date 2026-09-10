@@ -1,0 +1,73 @@
+{
+"schema": "AICOS_REDUCER_PRECEDENCE_v1",
+"principle": "More permissive authority must never override a higher-priority safety condition.",
+"precedence": [
+{
+"rank": 1,
+"condition": "VERIFICATION_INTEGRITY_BROKEN",
+"reason_classes": [
+"STRUCTURAL_ERROR",
+"INTERNAL_VERIFICATION_ERROR"
+],
+"terminal_effect": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+},
+{
+"rank": 2,
+"condition": "MANDATORY_KNOWN_VIOLATION",
+"reason_classes": [
+"KNOWN_VIOLATION"
+],
+"terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "BLOCKED"
+}
+},
+{
+"rank": 3,
+"condition": "EPISTEMIC_UNKNOWN",
+"reason_classes": [
+"EPISTEMIC_UNKNOWN"
+],
+"terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "ABSTAIN"
+}
+},
+{
+"rank": 4,
+"condition": "OPERATIONAL_HOLD",
+"reason_classes": [
+"OPERATIONAL_HOLD"
+],
+"terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "HOLD"
+}
+},
+{
+"rank": 5,
+"condition": "AUTHORITY_CEILING",
+"terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "NO_PRODUCTION_ACTION"
+}
+}
+],
+"hard_rules": [
+"Verification integrity failure overrides all decision-authority states",
+"Mandatory known violation overrides epistemic unknown and operational hold",
+"Epistemic unknown overrides operational hold",
+"Operational hold overrides the authority ceiling",
+"No weighted average may mask a mandatory hard failure",
+"Additional adverse information must not increase permitted authority",
+"CannotEvaluate != EvaluatedAndFailed"
+],
+"current_reference": {
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"authority_ceiling": "NO_PRODUCTION_ACTION",
+"production_authorized": false
+}
+}
