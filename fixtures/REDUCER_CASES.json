@@ -1,0 +1,153 @@
+{
+"schema": "AICOS_REDUCER_CASES_v1",
+"purpose": "Executable fixture cases for validating reducer precedence and decision-authority outcomes.",
+"cases": [
+{
+"id": "CASE_001_STRUCTURAL_ERROR",
+"input": {
+"reason_classes": [
+"STRUCTURAL_ERROR"
+],
+"verification_status_before_reducer": "NOT_VERIFIED",
+"decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+},
+{
+"id": "CASE_002_INTERNAL_VERIFICATION_ERROR",
+"input": {
+"reason_classes": [
+"INTERNAL_VERIFICATION_ERROR"
+],
+"verification_status_before_reducer": "NOT_VERIFIED",
+"decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+},
+{
+"id": "CASE_003_KNOWN_VIOLATION",
+"input": {
+"reason_classes": [
+"KNOWN_VIOLATION"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "BLOCKED"
+}
+},
+{
+"id": "CASE_004_EPISTEMIC_UNKNOWN",
+"input": {
+"reason_classes": [
+"EPISTEMIC_UNKNOWN"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "ABSTAIN"
+}
+},
+{
+"id": "CASE_005_OPERATIONAL_HOLD",
+"input": {
+"reason_classes": [
+"OPERATIONAL_HOLD"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "HOLD"
+}
+},
+{
+"id": "CASE_006_AUTHORITY_CEILING_PRESERVES_VERIFIED",
+"input": {
+"reason_classes": [],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "LIMITED_AUTHORITY",
+"authority_ceiling": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "NO_PRODUCTION_ACTION"
+}
+},
+{
+"id": "CASE_007_AUTHORITY_CEILING_PRESERVES_NOT_VERIFIED",
+"input": {
+"reason_classes": [],
+"verification_status_before_reducer": "NOT_VERIFIED",
+"decision_authority_state_before_reducer": "LIMITED_AUTHORITY",
+"authority_ceiling": "NO_PRODUCTION_ACTION"
+},
+"expected": {
+"verification_status": "NOT_VERIFIED",
+"decision_authority_state": "NO_PRODUCTION_ACTION"
+}
+},
+{
+"id": "CASE_008_PRECEDENCE_STRUCTURAL_OVER_BLOCK",
+"input": {
+"reason_classes": [
+"STRUCTURAL_ERROR",
+"KNOWN_VIOLATION"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "BLOCKED"
+},
+"expected": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+},
+{
+"id": "CASE_009_PRECEDENCE_BLOCK_OVER_ABSTAIN",
+"input": {
+"reason_classes": [
+"KNOWN_VIOLATION",
+"EPISTEMIC_UNKNOWN"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "ABSTAIN"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "BLOCKED"
+}
+},
+{
+"id": "CASE_010_PRECEDENCE_ABSTAIN_OVER_HOLD",
+"input": {
+"reason_classes": [
+"EPISTEMIC_UNKNOWN",
+"OPERATIONAL_HOLD"
+],
+"verification_status_before_reducer": "VERIFIED",
+"decision_authority_state_before_reducer": "HOLD"
+},
+"expected": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "ABSTAIN"
+}
+}
+],
+"claim_boundary": {
+"fixture_status": "FIRST_PARTY_TEST_FIXTURE",
+"external_reproduction": "NOT_ESTABLISHED",
+"independent_validation": "NOT_ESTABLISHED",
+"production_operation": "NOT_ESTABLISHED"
+}
+}
