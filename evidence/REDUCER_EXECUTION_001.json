@@ -1,0 +1,72 @@
+{
+"schema": "AICOS_REDUCER_EXECUTION_EVIDENCE_v1",
+"evidence_id": "REDUCER_EXECUTION_001",
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"execution_type": "FIRST_PARTY_EXECUTION",
+"runner": "tools/run_reducer_cases.py",
+"fixture": "fixtures/REDUCER_CASES.json",
+"precedence_contract": "contracts/REDUCER_PRECEDENCE.json",
+"result": {
+"total_cases": 10,
+"passed_cases": 10,
+"failed_cases": 0,
+"exit_code": 0,
+"status": "PASS"
+},
+"case_results": [
+{
+"id": "CASE_001_STRUCTURAL_ERROR",
+"status": "PASS"
+},
+{
+"id": "CASE_002_INTERNAL_VERIFICATION_ERROR",
+"status": "PASS"
+},
+{
+"id": "CASE_003_KNOWN_VIOLATION",
+"status": "PASS"
+},
+{
+"id": "CASE_004_EPISTEMIC_UNKNOWN",
+"status": "PASS"
+},
+{
+"id": "CASE_005_OPERATIONAL_HOLD",
+"status": "PASS"
+},
+{
+"id": "CASE_006_AUTHORITY_CEILING_PRESERVES_VERIFIED",
+"status": "PASS"
+},
+{
+"id": "CASE_007_AUTHORITY_CEILING_PRESERVES_NOT_VERIFIED",
+"status": "PASS"
+},
+{
+"id": "CASE_008_PRECEDENCE_STRUCTURAL_OVER_BLOCK",
+"status": "PASS"
+},
+{
+"id": "CASE_009_PRECEDENCE_BLOCK_OVER_ABSTAIN",
+"status": "PASS"
+},
+{
+"id": "CASE_010_PRECEDENCE_ABSTAIN_OVER_HOLD",
+"status": "PASS"
+}
+],
+"claim_boundary": {
+"established": [
+"FIRST_PARTY_EXECUTION",
+"DETERMINISTIC_FIXTURE_EXECUTION"
+],
+"not_established": [
+"EXTERNAL_REPRODUCTION",
+"EXTERNAL_TECHNICAL_REVIEW",
+"INDEPENDENT_EVALUATION",
+"INDEPENDENT_VALIDATION",
+"PRODUCTION_OPERATION"
+]
+},
+"governing_rule": "ClaimStrength <= EvidenceStrength"
+}
