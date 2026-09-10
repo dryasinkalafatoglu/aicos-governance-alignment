@@ -1,0 +1,38 @@
+{
+"schema": "AICOS_VERIFICATION_STATUS_v1",
+"principle": "Verification integrity is independent from decision authority.",
+"states": [
+{
+"id": "VERIFIED",
+"description": "The declared verification procedure completed successfully for the evaluated artifact scope."
+},
+{
+"id": "NOT_VERIFIED",
+"description": "Verification has not been established for the evaluated artifact scope."
+},
+{
+"id": "VERIFICATION_ERROR",
+"description": "The system could not complete a valid verification because of structural, parser, integrity, or internal verification failure."
+}
+],
+"hard_rules": [
+"VERIFICATION_ERROR => decision_authority_state = null",
+"VERIFIED does not imply permission to act",
+"VERIFIED + BLOCKED is valid",
+"VERIFIED + ABSTAIN is valid",
+"VERIFIED + HOLD is valid",
+"NOT_VERIFIED cannot be promoted to production authority",
+"CannotEvaluate != EvaluatedAndFailed"
+],
+"semantic_boundaries": [
+"VerificationStatus != DecisionAuthorityState",
+"VerificationStatus != AssuranceMaturity",
+"VerifiedArtifact != EvidenceTruth",
+"VerifiedArtifact != ProductionAuthorization"
+],
+"current_reference": {
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"verification_model": "SEPARATE_AXIS",
+"production_authorization_from_verification_alone": false
+}
+}
