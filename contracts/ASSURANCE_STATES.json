@@ -1,9 +1,54 @@
+{
+"schema": "AICOS_ASSURANCE_STATES_v1",
+"governing_rule": "ClaimStrength <= EvidenceStrength",
+"states": [
+{
+"id": "DESIGNED",
+"description": "The behavior or control is specified, but implementation evidence is not required at this state."
+},
+{
+"id": "IMPLEMENTED",
+"description": "Executable implementation evidence exists for the declared scope."
+},
+{
+"id": "TESTED",
+"description": "The implementation has executable test evidence for the declared scope."
+},
+{
+"id": "EXTERNALLY_REPRODUCED",
+"description": "A separate external party reproduced the declared behavior against the frozen artifact."
+},
+{
+"id": "EXTERNALLY_TECHNICALLY_REVIEWED",
+"description": "A separate external party reproduced the declared behavior and performed at least one evaluator-originated technical challenge."
+},
+{
+"id": "INDEPENDENTLY_EVALUATED",
+"description": "Independent evaluation has been separately established with evidence of evaluator independence, scope and method."
+},
+{
+"id": "INDEPENDENTLY_VALIDATED",
+"description": "Independent validation has been established for a defined scope under an explicit validation method."
+},
+{
+"id": "PRODUCTION_OPERATIONAL",
+"description": "The system is operating in production under separately established production controls and evidence."
+}
+],
 "non_equivalence_rules": [
-  "DESIGNED != IMPLEMENTED",
-  "IMPLEMENTED != TESTED",
-  "TESTED != EXTERNALLY_REPRODUCED",
-  "EXTERNALLY_REPRODUCED != INDEPENDENTLY_VALIDATED",
-  "EXTERNALLY_TECHNICALLY_REVIEWED != INDEPENDENTLY_VALIDATED",
-  "PRODUCTION_READINESS != PRODUCTION_OPERATIONAL",
-  "DETERMINISTIC_RECEIPT != EVIDENCE_TRUTH"
-]
+"DESIGNED != IMPLEMENTED",
+"IMPLEMENTED != TESTED",
+"TESTED != EXTERNALLY_REPRODUCED",
+"EXTERNALLY_REPRODUCED != INDEPENDENTLY_VALIDATED",
+"EXTERNALLY_TECHNICALLY_REVIEWED != INDEPENDENTLY_VALIDATED",
+"PRODUCTION_READINESS != PRODUCTION_OPERATIONAL",
+"DETERMINISTIC_RECEIPT != EVIDENCE_TRUTH"
+],
+"current_reference": {
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"maximum_established_state": "TESTED",
+"external_reproduction": "NOT_ESTABLISHED",
+"independent_validation": "NOT_ESTABLISHED",
+"production_operation": "NOT_ESTABLISHED"
+}
+}
