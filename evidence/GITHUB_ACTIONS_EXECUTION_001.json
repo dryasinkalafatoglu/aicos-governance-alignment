@@ -1,0 +1,46 @@
+{
+"schema": "AICOS_GITHUB_ACTIONS_EXECUTION_EVIDENCE_v1",
+"evidence_id": "GITHUB_ACTIONS_EXECUTION_001",
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"execution_environment": "GITHUB_HOSTED_ACTIONS",
+"repository": "dryasinkalafatoglu/aicos-governance-alignment",
+"workflow": {
+"name": "Reducer Tests",
+"path": ".github/workflows/reducer-tests.yml",
+"run_id": 34480605798,
+"run_number": 1,
+"event": "push",
+"head_branch": "main",
+"head_sha": "0afbeeaf4582004c12b026c95760eb5b7592fc9e",
+"status": "completed",
+"conclusion": "success"
+},
+"receipt_artifact": {
+"name": "reducer-execution-receipt",
+"artifact_id": 10153393333,
+"size_in_bytes": 1171,
+"expired": false,
+"sha256_digest": "8de30a272c915e0f0db18e70cd88f9b151c83bfbed9cf3c4949ddf09495d99b3"
+},
+"evidence_interpretation": {
+"established": [
+"GITHUB_HOSTED_EXECUTION_OCCURRED",
+"WORKFLOW_COMPLETED_SUCCESSFULLY",
+"EXECUTION_RECEIPT_ARTIFACT_WAS_GENERATED",
+"ARTIFACT_DIGEST_RECORDED"
+],
+"not_established": [
+"EVIDENCE_TRUTH",
+"EXTERNAL_REPRODUCTION",
+"EXTERNAL_TECHNICAL_REVIEW",
+"INDEPENDENT_EVALUATION",
+"INDEPENDENT_VALIDATION",
+"PRODUCTION_OPERATION"
+]
+},
+"governing_rules": [
+"ClaimStrength <= EvidenceStrength",
+"DeterministicReceipt != EvidenceTruth",
+"ExternalReproduction != IndependentValidation"
+]
+}
