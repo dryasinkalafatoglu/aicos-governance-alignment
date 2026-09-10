@@ -1,0 +1,61 @@
+{
+"schema": "AICOS_DECISION_AUTHORITY_STATES_v1",
+"principle": "Verification status and decision authority state are separate dimensions.",
+"states": [
+{
+"id": "PRODUCTION_AUTHORIZED",
+"description": "Production action is explicitly permitted within a separately established authority scope."
+},
+{
+"id": "LIMITED_AUTHORITY",
+"description": "Only a bounded subset of actions is permitted under explicit constraints."
+},
+{
+"id": "NO_PRODUCTION_ACTION",
+"description": "The artifact may be verified, but no production action is permitted."
+},
+{
+"id": "ABSTAIN",
+"description": "The system must not act because the available evidence is insufficient or epistemically uncertain."
+},
+{
+"id": "HOLD",
+"description": "Action is temporarily suspended because an operational or governance condition remains unresolved."
+},
+{
+"id": "BLOCKED",
+"description": "Action is prohibited because a known mandatory governance or control violation exists."
+}
+],
+"verification_interaction": {
+"VERIFIED": [
+"PRODUCTION_AUTHORIZED",
+"LIMITED_AUTHORITY",
+"NO_PRODUCTION_ACTION",
+"ABSTAIN",
+"HOLD",
+"BLOCKED"
+],
+"NOT_VERIFIED": [
+"NO_PRODUCTION_ACTION",
+"ABSTAIN",
+"HOLD",
+"BLOCKED"
+],
+"VERIFICATION_ERROR": null
+},
+"hard_rules": [
+"VERIFICATION_ERROR => decision_authority_state = null",
+"VERIFIED + BLOCKED is valid",
+"VERIFIED + ABSTAIN is valid",
+"A technically valid artifact does not automatically grant permission to act",
+"A mandatory BLOCK condition cannot be masked by aggregate scoring",
+"UNKNOWN or unresolved evidence cannot increase authority"
+],
+"current_reference": {
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"authority_ceiling": "NO_PRODUCTION_ACTION",
+"production_authorized": false,
+"production_operation": "NOT_ESTABLISHED"
+}
+}
