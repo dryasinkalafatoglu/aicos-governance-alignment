@@ -18,6 +18,8 @@ on:
 
 permissions:
   contents: read
+  id-token: write
+  attestations: write
 
 jobs:
   reducer-tests:
@@ -44,6 +46,12 @@ jobs:
             echo "Receipt was not generated."
             exit 1
           fi
+
+      - name: Attest execution receipt
+        if: success()
+        uses: actions/attest@v4
+        with:
+          subject-path: evidence/REDUCER_EXECUTION_LATEST.json
 
       - name: Upload execution receipt
         if: always()
