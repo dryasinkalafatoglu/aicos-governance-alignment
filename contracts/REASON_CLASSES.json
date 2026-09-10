@@ -1,0 +1,65 @@
+{
+"schema": "AICOS_REASON_CLASSES_v1",
+"principle": "Reason classification must not be used to launder or strengthen a governance outcome.",
+"classes": [
+{
+"id": "STRUCTURAL_ERROR",
+"description": "The system cannot validly evaluate the artifact because required structure, syntax, integrity, or evaluability is broken.",
+"required_terminal_effect": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+},
+{
+"id": "KNOWN_VIOLATION",
+"description": "A known mandatory governance or control requirement has been violated.",
+"required_terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "BLOCKED"
+}
+},
+{
+"id": "EPISTEMIC_UNKNOWN",
+"description": "Available evidence is insufficient to support the required decision claim.",
+"required_terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "ABSTAIN"
+}
+},
+{
+"id": "OPERATIONAL_HOLD",
+"description": "Evaluation is structurally valid, but action must pause because an operational or governance condition remains unresolved.",
+"required_terminal_effect": {
+"verification_status": "VERIFIED",
+"decision_authority_state": "HOLD"
+}
+},
+{
+"id": "INTERNAL_VERIFICATION_ERROR",
+"description": "The verification mechanism itself encountered an internal failure that prevents a valid determination.",
+"required_terminal_effect": {
+"verification_status": "VERIFICATION_ERROR",
+"decision_authority_state": null
+}
+}
+],
+"hard_rules": [
+"STRUCTURAL_ERROR != KNOWN_VIOLATION",
+"CannotEvaluate != EvaluatedAndFailed",
+"EPISTEMIC_UNKNOWN != OPERATIONAL_HOLD",
+"INTERNAL_VERIFICATION_ERROR => decision_authority_state = null",
+"A reason identifier must not independently grant authority",
+"Unregistered reasons must not silently map to a more permissive authority state"
+],
+"reducer_precedence": [
+"verification integrity broken",
+"mandatory known violation",
+"epistemic unknown",
+"operational hold",
+"authority ceiling"
+],
+"current_reference": {
+"artifact": "AICOS CORE MPK v0.2-RC1",
+"reason_model": "SEPARATE_CLASSIFICATION_AXIS"
+}
+}
