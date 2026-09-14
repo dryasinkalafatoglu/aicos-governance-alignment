@@ -1,1 +1,89 @@
 
+dryasinkalafatoglu
+aicos-governance-alignment
+Repository navigation
+Code
+Issues
+Pull requests
+Agents
+Actions
+Projects
+Wiki
+dryasinkalafatoglu
+aicos-governance-alignment
+Public
+aicos/remediate-rf01-rf03 had recent pushes on 14 Eyl
+dryasinkalafatoglu
+dryasinkalafatoglu
+Create run_reducer_cases_v2.py
+5edccf4
+ · 
+now
+Name		
+.github/workflows
+Update reducer-tests.yml
+4 days ago
+contracts
+Update ASSURANCE_STATES.json
+4 days ago
+docs
+Delete docs/contracts/ASSURANCE_STATES.json
+4 days ago
+evidence
+Create GITHUB_ACTIONS_EXECUTION_001.json
+4 days ago
+fixtures
+Add REDUCER_CASES_v2.json with test cases
+16 minutes ago
+tools
+Create run_reducer_cases_v2.py
+now
+LICENSE
+Add Apache License 2.0
+4 days ago
+README.md
+Add initial governance alignment README
+4 days ago
+Repository files navigation
+README
+Apache-2.0 license
+About
+
+Experimental machine-readable governance manifest for high-consequence financial decisions, with human-final authority, evidence provenance, and candidate mappings to FINOS AIGF and CALM.
+
+Resources
+Readme
+Apache-2.0 license
+Activity
+Stars
+0 stars
+Watchers
+0 watching
+Forks
+0 forks
+Releases
+No releases published
+Create a new release
+Packages
+No packages published
+Publish your first package
+Contributors
+1
+ (1)
+@dryasinkalafatoglu
+dryasinkalafatoglu
+Languages
+Python
+100%
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
+Do not share my personal information
