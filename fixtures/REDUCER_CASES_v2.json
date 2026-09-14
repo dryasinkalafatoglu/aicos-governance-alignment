@@ -1,89 +1,169 @@
-
-dryasinkalafatoglu
-aicos-governance-alignment
-Repository navigation
-Code
-Issues
-Pull requests
-Agents
-Actions
-Projects
-Wiki
-dryasinkalafatoglu
-aicos-governance-alignment
-Public
-aicos/remediate-rf01-rf03 had recent pushes on 14 Eyl
-dryasinkalafatoglu
-dryasinkalafatoglu
-Create run_reducer_cases_v2.py
-5edccf4
- · 
-now
-Name		
-.github/workflows
-Update reducer-tests.yml
-4 days ago
-contracts
-Update ASSURANCE_STATES.json
-4 days ago
-docs
-Delete docs/contracts/ASSURANCE_STATES.json
-4 days ago
-evidence
-Create GITHUB_ACTIONS_EXECUTION_001.json
-4 days ago
-fixtures
-Add REDUCER_CASES_v2.json with test cases
-16 minutes ago
-tools
-Create run_reducer_cases_v2.py
-now
-LICENSE
-Add Apache License 2.0
-4 days ago
-README.md
-Add initial governance alignment README
-4 days ago
-Repository files navigation
-README
-Apache-2.0 license
-About
-
-Experimental machine-readable governance manifest for high-consequence financial decisions, with human-final authority, evidence provenance, and candidate mappings to FINOS AIGF and CALM.
-
-Resources
-Readme
-Apache-2.0 license
-Activity
-Stars
-0 stars
-Watchers
-0 watching
-Forks
-0 forks
-Releases
-No releases published
-Create a new release
-Packages
-No packages published
-Publish your first package
-Contributors
-1
- (1)
-@dryasinkalafatoglu
-dryasinkalafatoglu
-Languages
-Python
-100%
-Footer
-© 2026 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Community
-Docs
-Contact
-Manage cookies
-Do not share my personal information
+{
+  "schema": "AICOS_REDUCER_CASES_v2_LOCAL_REMEDIATION",
+  "cases": [
+    {
+      "id": "AG01_OMITTED_CEILING_PRODUCTION_INPUT",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_NULL_CEILING_PRODUCTION_INPUT",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION",
+        "authority_ceiling": null
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_PERMISSIVE_CALLER_CEILING",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION",
+        "authority_ceiling": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_MORE_RESTRICTIVE_CALLER_CEILING",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY",
+        "authority_ceiling": "HOLD"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "HOLD"
+      }
+    },
+    {
+      "id": "AG02_STRING_REASON_CLASSES",
+      "input": {
+        "reason_classes": "KNOWN_VIOLATION",
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_UNKNOWN_REASON",
+      "input": {
+        "reason_classes": ["UNKNOWN_REASON"],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_NULL_VERIFICATION",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": null,
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_UNKNOWN_AUTHORITY",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "SUPER_ADMIN"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG04_KNOWN_VIOLATION_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": ["KNOWN_VIOLATION"],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "BLOCKED"
+      }
+    },
+    {
+      "id": "AG04_EPISTEMIC_UNKNOWN_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": ["EPISTEMIC_UNKNOWN"],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "ABSTAIN"
+      }
+    },
+    {
+      "id": "AG04_OPERATIONAL_HOLD_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": ["OPERATIONAL_HOLD"],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "HOLD"
+      }
+    },
+    {
+      "id": "AG05_VERIFICATION_ERROR_DOMINATES",
+      "input": {
+        "reason_classes": [
+          "STRUCTURAL_ERROR",
+          "KNOWN_VIOLATION",
+          "EPISTEMIC_UNKNOWN",
+          "OPERATIONAL_HOLD"
+        ],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFICATION_ERROR",
+        "decision_authority_state": null
+      }
+    },
+    {
+      "id": "BASE_KNOWN_VIOLATION",
+      "input": {
+        "reason_classes": ["KNOWN_VIOLATION"],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "BLOCKED"
+      }
+    },
+    {
+      "id": "BASE_UNKNOWN",
+      "input": {
+        "reason_classes": ["EPISTEMIC_UNKNOWN"],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "ABSTAIN"
+      }
+    }
+  ]
+}
