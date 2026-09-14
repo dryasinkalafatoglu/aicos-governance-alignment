@@ -1,0 +1,181 @@
+{
+  "schema": "AICOS_REDUCER_CASES_v2_LOCAL_REMEDIATION",
+  "cases": [
+    {
+      "id": "AG01_OMITTED_CEILING_PRODUCTION_INPUT",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_NULL_CEILING_PRODUCTION_INPUT",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION",
+        "authority_ceiling": null
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_PERMISSIVE_CALLER_CEILING",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION",
+        "authority_ceiling": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "NO_PRODUCTION_ACTION"
+      }
+    },
+    {
+      "id": "AG01_MORE_RESTRICTIVE_CALLER_CEILING",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY",
+        "authority_ceiling": "HOLD"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "HOLD"
+      }
+    },
+    {
+      "id": "AG02_STRING_REASON_CLASSES",
+      "input": {
+        "reason_classes": "KNOWN_VIOLATION",
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_UNKNOWN_REASON",
+      "input": {
+        "reason_classes": [
+          "UNKNOWN_REASON"
+        ],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_NULL_VERIFICATION",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": null,
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG02_UNKNOWN_AUTHORITY",
+      "input": {
+        "reason_classes": [],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "SUPER_ADMIN"
+      },
+      "expected_error": "InputInvalid"
+    },
+    {
+      "id": "AG04_KNOWN_VIOLATION_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": [
+          "KNOWN_VIOLATION"
+        ],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "BLOCKED"
+      }
+    },
+    {
+      "id": "AG04_EPISTEMIC_UNKNOWN_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": [
+          "EPISTEMIC_UNKNOWN"
+        ],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "ABSTAIN"
+      }
+    },
+    {
+      "id": "AG04_OPERATIONAL_HOLD_NO_VERIFICATION_PROMOTION",
+      "input": {
+        "reason_classes": [
+          "OPERATIONAL_HOLD"
+        ],
+        "verification_status_before_reducer": "NOT_VERIFIED",
+        "decision_authority_state_before_reducer": "LIMITED_AUTHORITY"
+      },
+      "expected": {
+        "verification_status": "NOT_VERIFIED",
+        "decision_authority_state": "HOLD"
+      }
+    },
+    {
+      "id": "AG05_VERIFICATION_ERROR_DOMINATES",
+      "input": {
+        "reason_classes": [
+          "STRUCTURAL_ERROR",
+          "KNOWN_VIOLATION",
+          "EPISTEMIC_UNKNOWN",
+          "OPERATIONAL_HOLD"
+        ],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFICATION_ERROR",
+        "decision_authority_state": null
+      }
+    },
+    {
+      "id": "BASE_KNOWN_VIOLATION",
+      "input": {
+        "reason_classes": [
+          "KNOWN_VIOLATION"
+        ],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "BLOCKED"
+      }
+    },
+    {
+      "id": "BASE_UNKNOWN",
+      "input": {
+        "reason_classes": [
+          "EPISTEMIC_UNKNOWN"
+        ],
+        "verification_status_before_reducer": "VERIFIED",
+        "decision_authority_state_before_reducer": "NO_PRODUCTION_ACTION"
+      },
+      "expected": {
+        "verification_status": "VERIFIED",
+        "decision_authority_state": "ABSTAIN"
+      }
+    }
+  ]
+}
