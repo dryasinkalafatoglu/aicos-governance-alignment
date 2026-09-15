@@ -1,0 +1,64 @@
+{
+  "schema": "AICOS_REDUCER_PRECEDENCE_v2_LOCAL_REMEDIATION",
+  "principle": "More permissive authority must never override a higher-priority safety condition.",
+  "verification_states": [
+    "NOT_VERIFIED",
+    "VERIFIED",
+    "VERIFICATION_ERROR"
+  ],
+  "authority_states_ordered_most_to_least_permissive": [
+    "PRODUCTION_ACTION",
+    "LIMITED_AUTHORITY",
+    "NO_PRODUCTION_ACTION",
+    "HOLD",
+    "ABSTAIN",
+    "BLOCKED"
+  ],
+  "trusted_maximum_authority": "NO_PRODUCTION_ACTION",
+  "allowed_reason_classes": [
+    "STRUCTURAL_ERROR",
+    "INTERNAL_VERIFICATION_ERROR",
+    "KNOWN_VIOLATION",
+    "EPISTEMIC_UNKNOWN",
+    "OPERATIONAL_HOLD"
+  ],
+  "precedence": [
+    {
+      "rank": 1,
+      "condition": "VERIFICATION_INTEGRITY_BROKEN",
+      "reason_classes": [
+        "STRUCTURAL_ERROR",
+        "INTERNAL_VERIFICATION_ERROR"
+      ],
+      "authority_effect": null,
+      "verification_effect": "VERIFICATION_ERROR"
+    },
+    {
+      "rank": 2,
+      "condition": "MANDATORY_KNOWN_VIOLATION",
+      "reason_classes": [
+        "KNOWN_VIOLATION"
+      ],
+      "authority_effect": "BLOCKED",
+      "verification_effect": "PRESERVE"
+    },
+    {
+      "rank": 3,
+      "condition": "EPISTEMIC_UNKNOWN",
+      "reason_classes": [
+        "EPISTEMIC_UNKNOWN"
+      ],
+      "authority_effect": "ABSTAIN",
+      "verification_effect": "PRESERVE"
+    },
+    {
+      "rank": 4,
+      "condition": "OPERATIONAL_HOLD",
+      "reason_classes": [
+        "OPERATIONAL_HOLD"
+      ],
+      "authority_effect": "HOLD",
+      "verification_effect": "PRESERVE"
+    }
+  ]
+}
